@@ -20,6 +20,8 @@ class GetFirstViewHelper extends AbstractFormFieldViewHelper
     {
         parent::initializeArguments();
         $this->registerUniversalTagAttributes();
+        $this->registerArgument('objectStorage', '\object', 'ObjectStorage', false);
+
     }
 
     /**
@@ -28,8 +30,9 @@ class GetFirstViewHelper extends AbstractFormFieldViewHelper
      * @param \object $objectStorage
      * @return \mixed
      */
-    public function render($objectStorage)
+    public function render()
     {
+        $objectStorage = $this->arguments['objectStorage'];
         if ($objectStorage === null) {
             return null;
         }

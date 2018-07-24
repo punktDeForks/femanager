@@ -8,6 +8,14 @@ namespace In2code\Femanager\ViewHelpers\Validation;
 class FormValidationDataViewHelper extends AbstractValidationViewHelper
 {
 
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('settings', 'array', 'TypoScript');
+        $this->registerArgument('fieldName', 'string', 'Fieldname');
+        $this->registerArgument('additionalAttributes', 'array', 'AdditionalAttributes');
+    }
+
     /**
      * Validation names with simple configuration
      *
@@ -31,8 +39,13 @@ class FormValidationDataViewHelper extends AbstractValidationViewHelper
      * @param array $additionalAttributes AdditionalAttributes
      * @return array
      */
-    public function render($settings, $fieldName, $additionalAttributes = [])
+    public function render()
     {
+
+        $settings = $this->arguments['settings'];
+        $fieldName = $this->arguments['fieldName'];
+        $additionalAttributes = $this->arguments['additionalAttributes'];
+
         if ($settings[$this->getControllerName()]['validation']['_enable']['client'] === '1') {
             $validationString = $this->getValidationString($settings, $fieldName);
             if (!empty($validationString)) {

@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace In2code\Femanager\ViewHelpers\Form;
 
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
-use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Class GetCountriesFromStaticInfoTablesViewHelper

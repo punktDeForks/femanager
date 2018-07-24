@@ -19,7 +19,7 @@ class LocalizationUtility extends LocalizationUtilityExtbase
      * @param array $arguments the arguments of the extension, being passed over to vsprintf
      * @return string|null
      */
-    public static function translate($key, $extensionName = 'femanager', $arguments = null)
+    public static function translate($key, $extensionName = 'femanager', $arguments = null, string $languageKey = null, array $alternativeLanguageKeys = null)
     {
         return parent::translate($key, $extensionName, $arguments);
     }

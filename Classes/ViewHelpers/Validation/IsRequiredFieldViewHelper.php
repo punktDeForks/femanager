@@ -10,6 +10,12 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 class IsRequiredFieldViewHelper extends AbstractValidationViewHelper
 {
 
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('fieldName', 'string', 'Fieldname');
+    }
+
     /**
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
      * @inject
@@ -22,8 +28,10 @@ class IsRequiredFieldViewHelper extends AbstractValidationViewHelper
      * @param string $fieldName
      * @return bool
      */
-    public function render($fieldName)
+    public function render()
     {
+        $fieldName = $this->arguments['fieldName'];
+
         $settings = $this->getSettingsConfiguration();
         return !empty($settings[$this->getControllerName()][$this->getValidationName()][$fieldName]['required']);
     }
