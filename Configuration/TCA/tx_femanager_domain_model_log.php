@@ -9,8 +9,7 @@ return [
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
         'dividers2tabs' => true,
-        'versioningWS' => 2,
-        'versioning_followPages' => true,
+        'versioningWS' => true,
         'origUid' => 't3_origuid',
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
@@ -93,9 +92,12 @@ return [
             'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
             'config' => [
+                'behaviour' => [
+                    'allowLanguageSynchronization' => 1
+                ],
                 'type' => 'input',
                 'size' => 13,
-                'max' => 20,
+                'renderTyoe' => 'inputDateTime',
                 'eval' => 'datetime',
                 'checkbox' => 0,
                 'default' => 0,
@@ -106,12 +108,14 @@ return [
         ],
         'endtime' => [
             'exclude' => 1,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
             'config' => [
+                'behaviour' => [
+                    'allowLanguageSynchronization' => 1
+                ],
                 'type' => 'input',
                 'size' => 13,
-                'max' => 20,
+                'renderTyoe' => 'inputDateTime',
                 'eval' => 'datetime',
                 'checkbox' => 0,
                 'default' => 0,
@@ -136,6 +140,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
+                'renderTyoe' => 'inputDateTime',
                 'eval' => 'datetime',
                 'readOnly' => 1
             ],
