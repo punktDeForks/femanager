@@ -89,7 +89,6 @@ return [
         ],
         'starttime' => [
             'exclude' => 1,
-            'l10n_mode' => 'mergeIfNotBlank',
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
             'config' => [
                 'behaviour' => [
@@ -97,7 +96,7 @@ return [
                 ],
                 'type' => 'input',
                 'size' => 13,
-                'renderTyoe' => 'inputDateTime',
+                'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
                 'checkbox' => 0,
                 'default' => 0,
@@ -115,7 +114,7 @@ return [
                 ],
                 'type' => 'input',
                 'size' => 13,
-                'renderTyoe' => 'inputDateTime',
+                'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
                 'checkbox' => 0,
                 'default' => 0,
@@ -140,7 +139,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'renderTyoe' => 'inputDateTime',
+                'renderType' => 'inputDateTime',
                 'eval' => 'datetime',
                 'readOnly' => 1
             ],
