@@ -9,6 +9,12 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class GetClassNameOnActionViewHelper extends AbstractViewHelper
 {
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('actionName', '
+        ', 'Object Storage');
+    }
 
     /**
      * Return className if actionName fits to current action

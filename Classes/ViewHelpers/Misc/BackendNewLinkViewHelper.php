@@ -11,6 +11,13 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 class BackendNewLinkViewHelper extends AbstractViewHelper
 {
 
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('tableName', 'string', 'Table Name');
+        $this->registerArgument('addReturnUrl', 'bool', 'Add return URL', false, true);
+    }
+
     /**
      * Get an URI for new records in backend
      *
@@ -18,8 +25,10 @@ class BackendNewLinkViewHelper extends AbstractViewHelper
      * @param bool $addReturnUrl
      * @return string
      */
-    public function render(string $tableName, bool $addReturnUrl = true): string
+    public function render(): string
     {
+        $tableName = $this->arguments['tableName'];
+        $addReturnUrl = $this->arguments['addReturnUrl'];
         return BackendUtility::getBackendNewUri($tableName, BackendUtility::getPageIdentifier(), $addReturnUrl);
     }
 }

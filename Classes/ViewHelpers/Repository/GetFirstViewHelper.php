@@ -9,6 +9,11 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class GetFirstViewHelper extends AbstractViewHelper
 {
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('objects', 'object', 'Object Storage');
+    }
 
     /**
      * Call getFirst() method of object storage
@@ -16,8 +21,9 @@ class GetFirstViewHelper extends AbstractViewHelper
      * @param object $objects
      * @return object|null
      */
-    public function render($objects)
+    public function render()
     {
+        $objects = $this->arguments['objects'];
         if (method_exists($objects, 'getFirst')) {
             return $objects->getFirst();
         }
