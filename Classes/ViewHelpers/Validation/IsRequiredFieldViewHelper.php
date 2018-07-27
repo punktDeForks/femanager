@@ -25,10 +25,9 @@ class IsRequiredFieldViewHelper extends AbstractValidationViewHelper
     /**
      * Check if this field is a required field
      *
-     * @param string $fieldName
      * @return bool
      */
-    public function render()
+    public function render(): bool
     {
         $fieldName = $this->arguments['fieldName'];
 

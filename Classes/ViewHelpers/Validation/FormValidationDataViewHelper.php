@@ -34,12 +34,9 @@ class FormValidationDataViewHelper extends AbstractValidationViewHelper
     /**
      * Set javascript validation data for input fields
      *
-     * @param array $settings TypoScript
-     * @param string $fieldName Fieldname
-     * @param array $additionalAttributes AdditionalAttributes
      * @return array
      */
-    public function render()
+    public function render(): array
     {
 
         $settings = $this->arguments['settings'];

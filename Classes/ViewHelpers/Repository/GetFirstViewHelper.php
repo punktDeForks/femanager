@@ -18,7 +18,6 @@ class GetFirstViewHelper extends AbstractViewHelper
     /**
      * Call getFirst() method of object storage
      *
-     * @param object $objects
      * @return object|null
      */
     public function render()

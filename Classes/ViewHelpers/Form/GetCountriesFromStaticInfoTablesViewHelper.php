@@ -11,6 +11,14 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 class GetCountriesFromStaticInfoTablesViewHelper extends AbstractViewHelper
 {
 
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('key', 'string', 'Key', false, 'isoCodeA3');
+        $this->registerArgument('value', 'string', 'Value', false, 'officialNameLocal');
+        $this->registerArgument('sortbyField', 'string', 'Sort by field', false, 'isoCodeA3');
+        $this->registerArgument('sorting', 'string', 'Sorting', false, 'asc');
+    }
     /**
      * countryRepository
      *
@@ -20,20 +28,17 @@ class GetCountriesFromStaticInfoTablesViewHelper extends AbstractViewHelper
     protected $countryRepository;
 
     /**
-     * Build an country array
+     * Build a country array
      *
-     * @param string $key
-     * @param string $value
-     * @param string $sortbyField
-     * @param string $sorting
      * @return array
      */
-    public function render(
-        $key = 'isoCodeA3',
-        $value = 'officialNameLocal',
-        $sortbyField = 'isoCodeA3',
-        $sorting = 'asc'
-    ): array {
+    public function render(): array
+    {
+        $key = $this->arguments['key'];
+        $value = $this->arguments['value'];
+        $sortbyField = $this->arguments['sortByField'];
+        $sorting = $this->arguments['sorting'];
+    
         $countries = $this->countryRepository->findAllOrderedBy($sortbyField, $sorting);
         $countriesArray = [];
         foreach ($countries as $country) {

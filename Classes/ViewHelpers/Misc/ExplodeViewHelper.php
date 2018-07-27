@@ -23,7 +23,7 @@ class ExplodeViewHelper extends AbstractViewHelper
      *
      * @return array
      */
-    public function render()
+    public function render(): array
     {
         $string = $this->arguments['string'];
         $separator = $this->arguments['separator'];

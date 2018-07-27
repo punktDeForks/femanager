@@ -21,8 +21,6 @@ class BackendNewLinkViewHelper extends AbstractViewHelper
     /**
      * Get an URI for new records in backend
      *
-     * @param string $tableName
-     * @param bool $addReturnUrl
      * @return string
      */
     public function render(): string

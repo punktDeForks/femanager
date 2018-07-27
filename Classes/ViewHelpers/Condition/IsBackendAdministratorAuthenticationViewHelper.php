@@ -16,7 +16,7 @@ class IsBackendAdministratorAuthenticationViewHelper extends AbstractViewHelper
      *
      * @return bool
      */
-    public function render()
+    public function render(): bool
     {
         return BackendUserUtility::isAdminAuthentication();
     }

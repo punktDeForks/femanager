@@ -12,20 +12,22 @@ class GetClassNameOnActionViewHelper extends AbstractViewHelper
     public function initializeArguments()
     {
         parent::initializeArguments();
-        $this->registerArgument('actionName', '
-        ', 'Object Storage');
+        $this->registerArgument('actionName', 'string', 'action name to compare with current action');
+        $this->registerArgument('className', 'string', 'classname that should be returned if action fits', false, ' btn-info');
+        $this->registerArgument('fallbackClassName', 'string', 'fallback classname if action does not fit', false, '');
     }
 
     /**
      * Return className if actionName fits to current action
      *
-     * @param string $actionName action name to compare with current action
-     * @param string $className classname that should be returned if action fits
-     * @param string $fallbackClassName fallback classname if action does not fit
      * @return string
      */
-    public function render($actionName, $className = ' btn-info', $fallbackClassName = '')
+    public function render(): string
     {
+        $actionName = $this->arguments['actionName'];
+        $className = $this->arguments['className'];
+        $fallbackClassName = $this->arguments['fallbackClassName'];
+
         if ($this->getCurrentActionName() === $actionName) {
             return $className;
         }

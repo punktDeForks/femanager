@@ -23,7 +23,6 @@ class JsonEncodeViewHelper extends AbstractViewHelper
     protected $escapeOutput = false;
 
     /**
-     * @param array $array
      * @return string
      */
     public function render(): string

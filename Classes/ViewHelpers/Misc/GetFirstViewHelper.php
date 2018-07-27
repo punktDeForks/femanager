@@ -27,7 +27,6 @@ class GetFirstViewHelper extends AbstractFormFieldViewHelper
     /**
      * View helper to get first subobject of objectstorage
      *
-     * @param \object $objectStorage
      * @return \mixed
      */
     public function render()
