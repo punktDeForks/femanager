@@ -36,7 +36,7 @@ class FormValidationDataViewHelper extends AbstractValidationViewHelper
      *
      * @return array
      */
-    public function render(): array
+    public function render()
     {
 
         $settings = $this->arguments['settings'];
