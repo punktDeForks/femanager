@@ -273,7 +273,15 @@ class UserUtility extends AbstractUtility
      */
     public static function removeFrontendSessionToUser(User $user)
     {
-        self::getDatabaseConnection()->exec_DELETEquery('fe_sessions', 'ses_userid = ' . (int)$user->getUid());
+        $queryBuilder = self::getDatabaseConnection();
+        $queryBuilder->resetQueryParts();
+        $queryBuilder->getRestrictions()
+            ->removeAll();
+
+        $queryBuilder
+            ->delete('fe_sessions')
+            ->where($queryBuilder->expr()->eq('ses_userid', $queryBuilder->createNamedParameter($user->getUid(), \PDO::PARAM_INT)))
+            ->execute();
     }
 
     /**
@@ -284,12 +292,19 @@ class UserUtility extends AbstractUtility
      */
     public static function checkFrontendSessionToUser(User $user)
     {
-        $select = 'ses_id';
-        $from = 'fe_sessions';
-        $where = 'ses_userid = ' . (int)$user->getUid();
-        $res = self::getDatabaseConnection()->exec_SELECTquery($select, $from, $where);
-        $row = self::getDatabaseConnection()->sql_fetch_assoc($res);
-        return !empty($row['ses_id']);
+        $queryBuilder = self::getDatabaseConnection();
+        $queryBuilder->resetQueryParts();
+        $queryBuilder->getRestrictions()
+            ->removeAll();
+
+        $count = $queryBuilder
+            ->count('*')
+            ->from('fe_sessions')
+            ->where($queryBuilder->expr()->eq('ses_userid', $queryBuilder->createNamedParameter($user->getUid(), \PDO::PARAM_INT)))
+            ->execute()
+            ->fetchColumn(0);
+
+        return boolval($count);
     }
 
     /**

@@ -39,7 +39,7 @@ class RequestViewHelper extends AbstractViewHelper
      *
      * @return string
      */
-    public function render(): string
+    public function render()
     {
         $parameter = $this->arguments['parameter'];
         $htmlspecialchars = $this->arguments['htmlspecialchars'];
