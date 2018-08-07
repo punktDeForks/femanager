@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
+
 namespace In2code\Femanager\Utility;
 
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\TimeTracker\TimeTracker;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -12,7 +14,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class BackendUtility
 {
-
     /**
      * @return int
      */
@@ -31,6 +32,9 @@ class BackendUtility
      */
     public static function getBackendEditUri(string $tableName, int $identifier, bool $addReturnUrl = true): string
     {
+        /** @var UriBuilder $uriBuilder */
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+
         $uriParameters = [
             'edit' => [
                 $tableName => [
@@ -40,9 +44,11 @@ class BackendUtility
         ];
         if ($addReturnUrl) {
             $uriParameters['returnUrl'] =
-                BackendUtilityCore::getModuleUrl(GeneralUtility::_GET('M'), self::getCurrentParameters());
+                $uriBuilder->buildUriFromRoute('femanager_main');
+            //BackendUtilityCore::getModuleUrl(GeneralUtility::_GET('M'), self::getCurrentParameters());
         }
-        return BackendUtilityCore::getModuleUrl('record_edit', $uriParameters);
+        return $uriBuilder->buildUriFromRoute('femanager_main', $uriParameters)->__toString();
+
     }
 
     /**
@@ -55,6 +61,9 @@ class BackendUtility
      */
     public static function getBackendNewUri(string $tableName, int $pageIdentifier, bool $addReturnUrl = true): string
     {
+        /** @var UriBuilder $uriBuilder */
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+
         $uriParameters = [
             'edit' => [
                 $tableName => [
@@ -65,10 +74,10 @@ class BackendUtility
         if ($addReturnUrl) {
             // @codeCoverageIgnoreStart
             $uriParameters['returnUrl'] =
-                BackendUtilityCore::getModuleUrl(GeneralUtility::_GET('M'), self::getCurrentParameters());
+                $uriBuilder->buildUriFromRoute('femanager_main');
             // @codeCoverageIgnoreEnd
         }
-        return BackendUtilityCore::getModuleUrl('record_edit', $uriParameters);
+        return $uriBuilder->buildUriFromRoute('femanager_main', $uriParameters)->__toString();
     }
 
     /**
@@ -166,4 +175,3 @@ class BackendUtility
         return $TSObj->setup;
     }
 }
-
