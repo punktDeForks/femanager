@@ -44,10 +44,10 @@ class BackendUtility
         ];
         if ($addReturnUrl) {
             $uriParameters['returnUrl'] =
-                $uriBuilder->buildUriFromRoute('femanager_main');
+                $uriBuilder->buildUriFromRoute('femanager_main', self::getCurrentParameters());
             //BackendUtilityCore::getModuleUrl(GeneralUtility::_GET('M'), self::getCurrentParameters());
         }
-        return $uriBuilder->buildUriFromRoute('femanager_main', $uriParameters)->__toString();
+        return $uriBuilder->buildUriFromRoute('record_edit', $uriParameters)->__toString();
 
     }
 
