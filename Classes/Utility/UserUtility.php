@@ -165,6 +165,7 @@ class UserUtility extends AbstractUtility
      *
      * @param User $user
      * @param string $method "md5", "sha1" or "none"
+     * @throws InvalidPasswordHashException
      * @return void
      */
     public static function hashPassword(User &$user, $method)
@@ -182,12 +183,8 @@ class UserUtility extends AbstractUtility
                 break;
 
             default:
-                if (ExtensionManagementUtility::isLoaded('saltedpasswords')) {
-                    if (SaltedPasswordsUtility::isUsageEnabled('FE')) {
-                        $objInstanceSaltedPw = SaltFactory::getSaltingInstance();
-                        $user->setPassword($objInstanceSaltedPw->getHashedPassword($user->getPassword()));
-                    }
-                }
+                $hashInstance = GeneralUtility::makeInstance(PasswordHashFactory::class)->getDefaultHashInstance('FE');
+                $user->setPassword($hashInstance->getHashedPassword($user->getPassword()));
         }
     }
 
