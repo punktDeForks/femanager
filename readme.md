@@ -21,6 +21,7 @@ Quick guide:
 
 | Femanager   | TYPO3      | PHP       | Support/Development                     |
 | ----------- | ---------- | ----------|---------------------------------------- |
+| dev         | 8.7 - 9.4  | 7.2       |    |
 | 4.x         | 8.7        | 7.0 - 7.2 | Features, Bugfixes, Security Updates    |
 | 3.x         | 8.7        | 7.0 - 7.2 | Security Updates                        |
 | 2.x         | 7.6        | 5.5 - 7.0 | Security Updates                        |
