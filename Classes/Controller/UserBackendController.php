@@ -10,7 +10,9 @@ use In2code\Femanager\Utility\FrontendUtility;
 use In2code\Femanager\Utility\LocalizationUtility;
 use In2code\Femanager\Utility\LogUtility;
 use In2code\Femanager\Utility\UserUtility;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class UserBackendController
@@ -20,14 +22,15 @@ class UserBackendController extends AbstractController
 
     /**
      * @param array $filter
-     * @return void
+     * @throws \TYPO3\CMS\Backend\Routing\Exception\RouteNotFoundException
      */
     public function listAction(array $filter = [])
     {
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $this->view->assignMultiple(
             [
                 'users' => $this->userRepository->findAllInBackend($filter),
-                'moduleUri' => BackendUtility::getModuleUrl('tce_db'),
+                'moduleUri' => $uriBuilder->buildUriFromRoute('tce_db'),
                 'action' => 'list'
             ]
         );
@@ -35,17 +38,19 @@ class UserBackendController extends AbstractController
 
     /**
      * @param array $filter
-     * @return void
+     * @throws \TYPO3\CMS\Backend\Routing\Exception\RouteNotFoundException
      */
     public function confirmationAction(array $filter = [])
     {
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+
         $this->view->assignMultiple(
             [
                 'users' => $this->userRepository->findAllInBackendForConfirmation(
                     $filter,
                     ConfigurationUtility::isBackendModuleFilterUserConfirmation()
                 ),
-                'moduleUri' => BackendUtility::getModuleUrl('tce_db'),
+                'moduleUri' => $uriBuilder->buildUriFromRoute('tce_db'),
                 'action' => 'confirmation'
             ]
         );
